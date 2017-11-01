@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style type="text/css">
+		span{
+			margin-right: 15px;
+		}
+	</style>
+	<script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			
+			$('#but').click(function(){
+				var val=$('#inp').val()
+				$.ajax({
+					url:'http:localhost:3000/item/list',
+					type:'post',
+					data:{name:val},
+					success:function(e){
+						var aa=''
+						for(var i in e){
+							aa+='<p>'+'<span>'+e[i].name+'</span>'+'<span>'+e[i].title+'</span>'+'</P>'
+						}
+						$('div').html(aa)
+					}
+				})
+			})
+		})
+	</script>
+</head>
+<body>
+	<input type="search" id="inp" /><button id="but">搜索</button>
+	<div></div>
+</body>
+</html>
